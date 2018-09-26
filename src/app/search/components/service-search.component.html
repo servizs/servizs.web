@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-card-content>
+    <mat-form-field>
+      <input matInput placeholder="Search for a service" [value]="searchQuery" (keyup)="search.emit($event.target.value)">
+    </mat-form-field>
+    <mat-spinner [class.show]="searching" [diameter]="30" [strokeWidth]="3"></mat-spinner>
+  </mat-card-content>
+  <mat-card-footer><span *ngIf="error">{{error}}</span></mat-card-footer>
+</mat-card>
