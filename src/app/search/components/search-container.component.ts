@@ -1,4 +1,4 @@
-import { AppState } from './../../app-state';
+import { AppState } from '../../store/app-state';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
