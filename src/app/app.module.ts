@@ -8,8 +8,9 @@ import { SearchModule } from './search/search.module';
 import { MaterialModule } from './material/material.module';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
-import { HomeRoutingModule } from './home/home-routing.module';
 import { LandingPageComponent } from './home/components/landing-page.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 @NgModule({
   declarations: [LandingPageComponent],
   imports: [
@@ -20,7 +21,8 @@ import { LandingPageComponent } from './home/components/landing-page.component';
     CoreModule,
     HomeModule,
     AppRoutingModule,
-    SearchModule
+    SearchModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
