@@ -1,24 +1,28 @@
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './core/components/app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchModule } from './search/search.module';
-import { SearchContainerComponent } from './search/search-container.component';
-import { SearchListComponent } from './search/components/search-list.component';
-
+import { MaterialModule } from './material/material.module';
+import { CoreModule } from './core/core.module';
+import { HomeModule } from './home/home.module';
+import { HomeRoutingModule } from './home/home-routing.module';
+import { LandingPageComponent } from './home/components/landing-page.component';
 @NgModule({
-  declarations: [
-    AppComponent,
-    SearchContainerComponent,
-    SearchListComponent
-  ],
+  declarations: [LandingPageComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    // SearchModule,
+    MaterialModule,
+    CoreModule,
+    HomeModule,
+    AppRoutingModule,
     SearchModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

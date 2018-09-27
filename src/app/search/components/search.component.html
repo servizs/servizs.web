@@ -1,7 +1,8 @@
 <mat-card>
+  <mat-card-title>Find a service</mat-card-title>
   <mat-card-content>
     <mat-form-field>
-      <input matInput placeholder="Search for a service" [value]="searchQuery" (keyup)="search.emit($event.target.value)">
+      <input matInput placeholder="Search for a service" [value]="query" (keyup)="search.emit($event.target.value)">
     </mat-form-field>
     <mat-spinner [class.show]="searching" [diameter]="30" [strokeWidth]="3"></mat-spinner>
   </mat-card-content>
