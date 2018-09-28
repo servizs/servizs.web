@@ -9,3 +9,12 @@ export interface Service {
 export interface SearchError {
   errorMessage: string;
 }
+
+export interface ServiceFilter {
+  query?: string;
+  startDate?: string;
+  endDate?: string;
+  city?: string;
+  country?: string;
+  postalCode?: string;
+}

@@ -7,6 +7,7 @@ import * as layoutActions from '../core/store/actions/layout.actions';
 import { getServices } from './store/reducers/search.reducer';
 import { Observable } from 'rxjs';
 import * as fromServices from './store/reducers/index';
+import { ServiceFilter } from './models/service.model';
 
 @Injectable()
 export class SearchFacade {
@@ -18,8 +19,8 @@ export class SearchFacade {
     );
   }
 
-  findServices(searchText: string) {
-    this.store.dispatch(new searchActions.Search(searchText));
+  findServices(searchFilter: ServiceFilter) {
+    this.store.dispatch(new searchActions.Search(searchFilter));
 
     // Enable spinner loading.
     this.store.dispatch(new layoutActions.Loading());

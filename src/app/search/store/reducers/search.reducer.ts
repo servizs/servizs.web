@@ -1,14 +1,14 @@
-import { Service, SearchError } from './../../models/service.model';
+import { Service, SearchError, ServiceFilter } from './../../models/service.model';
 import { ServiceActions, ServicesActionsTypes } from '../actions/services.actions';
 
 export interface State {
-  searchText: string;
+  serviceFilter: ServiceFilter;
   services: Service[];
   error: SearchError | null;
 }
 
 const initialState: State = {
-  searchText: '',
+  serviceFilter: {},
   services: [],
   error: {
     errorMessage: ''
@@ -18,10 +18,10 @@ const initialState: State = {
 export function reducer(state = initialState, action: ServiceActions): State {
   switch (action.type) {
     case ServicesActionsTypes.Search: {
-      const searchText = action.payload;
-      if (searchText === '') {
+      const serviceFilter = action.payload;
+      if (serviceFilter.query === '') {
         return {
-          searchText,
+          serviceFilter,
           services: [],
           error: null
         };
@@ -30,7 +30,7 @@ export function reducer(state = initialState, action: ServiceActions): State {
       return {
         ...state,
         error: null,
-        searchText: state.searchText
+        serviceFilter: serviceFilter
       };
     }
 
@@ -38,7 +38,7 @@ export function reducer(state = initialState, action: ServiceActions): State {
       return {
         services: action.payload,
         error: null,
-        searchText: state.searchText
+        serviceFilter: state.serviceFilter
       };
     }
 

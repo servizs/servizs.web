@@ -17,8 +17,8 @@ export class SearchEffects {
       ofType<fromServiceActions.Search>(fromServiceActions.ServicesActionsTypes.Search),
       debounceTime(debounce, scheduler),
       map(action => action.payload),
-      switchMap(query => {
-        if (query === '') {
+      switchMap(filter => {
+        if (filter.query === '') {
           return empty();
         }
 
@@ -26,7 +26,7 @@ export class SearchEffects {
           ofType(fromServiceActions.ServicesActionsTypes.Search),
           skip(1)
         );
-        return this.searchService.getServices(query).pipe(
+        return this.searchService.getServices(filter).pipe(
           takeUntil(nextSearch$),
           map((books: Service[]) => new fromServiceActions.SearchCompleted(books)),
           catchError(err => of(new fromServiceActions.SearchFailed(err)))

@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { SearchRoutingModule } from './search-routing.module';
 import { reducers } from './store/reducers';
+import { SearchFilterComponent } from './components/search-filter.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { reducers } from './store/reducers';
     StoreModule.forFeature('services', reducers),
     EffectsModule.forFeature([SearchEffects])
   ],
-  declarations: [ServicePreviewComponent, ServicePreviewListComponent, SearchComponent, SearchContainerComponent],
+  declarations: [ServicePreviewComponent, ServicePreviewListComponent, SearchComponent, SearchContainerComponent, SearchFilterComponent],
   providers: [SearchService, SearchFacade, SearchEffects],
   exports: [SearchContainerComponent]
 })

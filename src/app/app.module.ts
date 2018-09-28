@@ -16,7 +16,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
+import { MomentModule } from 'ngx-moment';
 @NgModule({
   declarations: [LandingPageComponent],
   imports: [
@@ -29,6 +29,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     SearchModule,
     FlexLayoutModule,
+    MomentModule,
 
     // Store
     StoreModule.forRoot(reducers, { metaReducers }),

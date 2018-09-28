@@ -1,4 +1,4 @@
-import { Service, SearchError } from './../../models/service.model';
+import { Service, SearchError, ServiceFilter } from './../../models/service.model';
 import { Action } from '@ngrx/store';
 
 export enum ServicesActionsTypes {
@@ -9,7 +9,7 @@ export enum ServicesActionsTypes {
 
 export class Search implements Action {
   readonly type = ServicesActionsTypes.Search;
-  constructor(public payload: string) {}
+  constructor(public payload: ServiceFilter) {}
 }
 
 export class SearchCompleted implements Action {
