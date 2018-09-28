@@ -1,6 +1,5 @@
+import { Service } from './../models/service.model';
 import { Component, OnInit, Input } from '@angular/core';
-
-import * as fromSearch from '../store/reducers/search.reducer';
 @Component({
   selector: 'app-service-preview',
   templateUrl: './service-preview.component.html',
@@ -8,7 +7,7 @@ import * as fromSearch from '../store/reducers/search.reducer';
 })
 export class ServicePreviewComponent implements OnInit {
   @Input()
-  service: fromSearch.Service;
+  service: Service;
   constructor() {}
 
   ngOnInit() {}

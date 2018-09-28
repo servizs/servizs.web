@@ -1,21 +1,10 @@
+import { Service, SearchError } from './../../models/service.model';
 import { ServiceActions, ServicesActionsTypes } from '../actions/services.actions';
 
 export interface State {
   searchText: string;
   services: Service[];
   error: SearchError | null;
-}
-
-export interface Service {
-  taskrId: string;
-  taskrName: String;
-  servicesOffered: Array<string>;
-  rating: number;
-  reviews: Array<string>;
-}
-
-export interface SearchError {
-  errorMessage: string;
 }
 
 const initialState: State = {

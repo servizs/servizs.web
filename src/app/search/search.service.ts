@@ -1,13 +1,12 @@
+import { Service } from './models/service.model';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-
-import * as fromSearch from './store/reducers/search.reducer';
 
 @Injectable()
 export class SearchService {
   constructor() {}
 
-  getServices(query: string): Observable<fromSearch.Service[]> {
+  getServices(query: string): Observable<Service[]> {
     return of([
       {
         taskrId: '123',

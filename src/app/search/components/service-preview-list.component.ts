@@ -1,5 +1,5 @@
+import { Service } from './../models/service.model';
 import { Component, OnInit, Input } from '@angular/core';
-import * as fromSearch from '../store/reducers/search.reducer';
 
 @Component({
   selector: 'app-service-preview-list',
@@ -9,7 +9,7 @@ import * as fromSearch from '../store/reducers/search.reducer';
 })
 export class ServicePreviewListComponent implements OnInit {
   @Input()
-  services: fromSearch.Service[] = [];
+  services: Service[] = [];
 
   constructor() {}
 
