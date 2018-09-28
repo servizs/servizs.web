@@ -1,5 +1,5 @@
 import { skip } from 'rxjs/operators';
-import { getSearchState, ServicesState } from './store/reducers/index';
+import { getSearchResult, ServicesState } from './store/reducers/index';
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as searchActions from './store/actions/services.actions';
@@ -14,7 +14,7 @@ export class SearchFacade {
   constructor(private store: Store<fromServices.State>) {
     this.searchResult$ = this.store.pipe(
       skip(1),
-      select(getSearchState)
+      select(getSearchResult)
     );
   }
 

@@ -15,4 +15,4 @@ export const reducers: ActionReducerMap<ServicesState> = {
 };
 
 export const getServicesState = createFeatureSelector<State, ServicesState>('services');
-export const getSearchState = createSelector(getServicesState, (state: ServicesState) => state.search.services);
+export const getSearchResult = createSelector(getServicesState, (state: ServicesState) => state.search.services);
