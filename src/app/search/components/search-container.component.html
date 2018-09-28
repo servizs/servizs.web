@@ -1,3 +1,3 @@
 <app-search (search)="search($event)"></app-search>
-<app-search-filter (dateSelected)="dateSelected($event)"></app-search-filter>
+<app-search-filter (dateSelected)="dateSelected($event)" [location]="userLocation$ | async"></app-search-filter>
 <app-service-preview-list [services]="services$ | async"></app-service-preview-list>

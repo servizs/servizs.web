@@ -1,5 +1,4 @@
 import { skip } from 'rxjs/operators';
-import { getSearchResult, ServicesState } from './store/reducers/index';
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as searchActions from './store/actions/services.actions';
@@ -12,10 +11,15 @@ import { ServiceFilter } from './models/service.model';
 @Injectable()
 export class SearchFacade {
   searchResult$: Observable<any>;
+  userLocation$: Observable<any>;
   constructor(private store: Store<fromServices.State>) {
     this.searchResult$ = this.store.pipe(
       skip(1),
-      select(getSearchResult)
+      select(fromServices.getSearchResult)
+    );
+    this.userLocation$ = this.store.pipe(
+      skip(1),
+      select(fromServices.getUserLocation)
     );
   }
 
@@ -24,5 +28,9 @@ export class SearchFacade {
 
     // Enable spinner loading.
     this.store.dispatch(new layoutActions.Loading());
+  }
+
+  findUserLocation(geoCodes: any) {
+    this.store.dispatch(new searchActions.GetUserLocation(geoCodes));
   }
 }

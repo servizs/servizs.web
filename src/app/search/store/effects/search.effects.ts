@@ -33,4 +33,29 @@ export class SearchEffects {
         );
       })
     );
+
+  @Effect()
+  getUserLocation$ = ({ debounce = 0, scheduler = asyncScheduler } = {}): Observable<Action> =>
+    this.actions$.pipe(
+      ofType<fromServiceActions.GetUserLocation>(fromServiceActions.ServicesActionsTypes.GetUserLocation),
+
+      map(action => action.payload),
+      switchMap(geoCode => {
+        if (!geoCode) {
+          // return of(new fromServiceActions.GetUserLocationFailed({ errorMessage: `co-ordinates are missing` }));
+          return empty();
+        }
+
+        const nextSearch$ = this.actions$.pipe(
+          ofType(fromServiceActions.ServicesActionsTypes.GetUserLocation),
+          skip(1)
+        );
+
+        return this.searchService.getUserLocation(geoCode).pipe(
+          takeUntil(nextSearch$),
+          map((location: any) => new fromServiceActions.GetUserLocationCompleted(location.join(','))),
+          catchError(err => of(new fromServiceActions.SearchFailed(err)))
+        );
+      })
+    );
 }

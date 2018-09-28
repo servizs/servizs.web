@@ -5,6 +5,7 @@ export interface State {
   serviceFilter: ServiceFilter;
   services: Service[];
   error: SearchError | null;
+  location: string;
 }
 
 const initialState: State = {
@@ -12,7 +13,8 @@ const initialState: State = {
   services: [],
   error: {
     errorMessage: ''
-  }
+  },
+  location: ''
 };
 
 export function reducer(state = initialState, action: ServiceActions): State {
@@ -23,14 +25,16 @@ export function reducer(state = initialState, action: ServiceActions): State {
         return {
           serviceFilter,
           services: [],
-          error: null
+          error: null,
+          location: ''
         };
       }
 
       return {
         ...state,
         error: null,
-        serviceFilter: serviceFilter
+        serviceFilter: serviceFilter,
+        location: state.location
       };
     }
 
@@ -38,7 +42,8 @@ export function reducer(state = initialState, action: ServiceActions): State {
       return {
         services: action.payload,
         error: null,
-        serviceFilter: state.serviceFilter
+        serviceFilter: state.serviceFilter,
+        location: state.location
       };
     }
 
@@ -46,7 +51,26 @@ export function reducer(state = initialState, action: ServiceActions): State {
       return {
         ...state,
         services: [],
-        error: action.payload
+        error: action.payload,
+        location: state.location
+      };
+    }
+
+    case ServicesActionsTypes.GetUserLocationCompleted: {
+      return {
+        ...state,
+        services: [],
+        error: null,
+        location: action.payload
+      };
+    }
+
+    case ServicesActionsTypes.GetUserLocationFailed: {
+      return {
+        ...state,
+        services: [],
+        error: action.payload,
+        location: ''
       };
     }
 
@@ -57,3 +81,5 @@ export function reducer(state = initialState, action: ServiceActions): State {
 }
 
 export const getServices = (state: State) => state.services;
+
+export const getLocation = (state: State) => state.location;

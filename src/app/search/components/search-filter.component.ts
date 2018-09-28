@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import * as moment from 'moment';
 @Component({
   selector: 'app-search-filter',
@@ -6,6 +6,8 @@ import * as moment from 'moment';
   styleUrls: ['./search-filter.component.css']
 })
 export class SearchFilterComponent implements OnInit {
+  @Input()
+  location = '';
   @Output()
   dateSelected = new EventEmitter<{}>();
   dateRanges: string[] = [];

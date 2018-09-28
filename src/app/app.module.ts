@@ -17,6 +17,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MomentModule } from 'ngx-moment';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [LandingPageComponent],
   imports: [
@@ -30,6 +32,8 @@ import { MomentModule } from 'ngx-moment';
     SearchModule,
     FlexLayoutModule,
     MomentModule,
+    HttpClientModule,
+    SharedModule,
 
     // Store
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -45,7 +49,9 @@ import { MomentModule } from 'ngx-moment';
       logOnly: environment.production
     }),
 
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
