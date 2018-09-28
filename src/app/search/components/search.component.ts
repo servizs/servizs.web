@@ -18,4 +18,8 @@ export class SearchComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  searchService($event: KeyboardEvent) {
+    this.search.emit(($event.currentTarget as HTMLInputElement).value);
+  }
 }

@@ -1,2 +1,3 @@
-<app-search (search)="search(searchQuery)"></app-search>
-<app-service-preview></app-service-preview>
+<app-search (search)="search($event)"></app-search>
+
+<app-service-preview-list [services]="services$ | async"></app-service-preview-list>

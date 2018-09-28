@@ -1,3 +1,6 @@
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { SearchEffects } from './store/effects/search.effects';
 import { SearchContainerComponent } from './components/search-container.component';
 import { SearchComponent } from './components/search.component';
 import { ServicePreviewListComponent } from './components/service-preview-list.component';
@@ -9,21 +12,19 @@ import { SearchFacade } from './search.facade';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { SearchRoutingModule } from './search-routing.module';
+import { reducers } from './store/reducers';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
-    SearchRoutingModule
+    SearchRoutingModule,
+    StoreModule.forFeature('services', reducers),
+    EffectsModule.forFeature([SearchEffects])
   ],
-  declarations: [
-    ServicePreviewComponent,
-    ServicePreviewListComponent,
-    SearchComponent,
-    SearchContainerComponent
-  ],
-  providers: [SearchService, SearchFacade],
+  declarations: [ServicePreviewComponent, ServicePreviewListComponent, SearchComponent, SearchContainerComponent],
+  providers: [SearchService, SearchFacade, SearchEffects],
   exports: [SearchContainerComponent]
 })
 export class SearchModule {}

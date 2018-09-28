@@ -1,6 +1,27 @@
+import { skip } from 'rxjs/operators';
+import { getSearchState, ServicesState } from './store/reducers/index';
 import { Injectable } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import * as searchActions from './store/actions/services.actions';
+import * as layoutActions from '../core/store/actions/layout.actions';
+import { getServices } from './store/reducers/search.reducer';
+import { Observable } from 'rxjs';
+import * as fromServices from './store/reducers/index';
 
 @Injectable()
 export class SearchFacade {
-  constructor() {}
+  searchResult$: Observable<any>;
+  constructor(private store: Store<fromServices.State>) {
+    this.searchResult$ = this.store.pipe(
+      skip(1),
+      select(getSearchState)
+    );
+  }
+
+  findServices(searchText: string) {
+    this.store.dispatch(new searchActions.Search(searchText));
+
+    // Enable spinner loading.
+    this.store.dispatch(new layoutActions.Loading());
+  }
 }

@@ -1,8 +1,6 @@
-import { AppState } from '../../store/app-state';
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { skip } from 'rxjs/operators';
+import { SearchFacade } from '../search.facade';
 
 @Component({
   selector: 'app-search-container',
@@ -10,15 +8,19 @@ import { skip } from 'rxjs/operators';
   styleUrls: ['./search-container.component.css']
 })
 export class SearchContainerComponent implements OnInit {
-  searchResult$ = new Observable<any>();
-  constructor() {
-    // this.searchResult$ = this.store.pipe(skip(1));
+  services$ = new Observable<any>();
+  constructor(private readonly searchFacade: SearchFacade) {
+    this.services$ = this.searchFacade.searchResult$;
+    /* this.searchFacade.searchResult$.subscribe(p => {
+      debugger;
+    });*/
   }
 
   ngOnInit() {}
 
-  search(searchQuery) {
+  search(searchQuery: string) {
     // TODO : Dispatch 2 events - Global State Loading event
     // Search the query text in backend.
+    this.searchFacade.findServices(searchQuery);
   }
 }
