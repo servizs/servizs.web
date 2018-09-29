@@ -1,5 +1,5 @@
-import { Service, SearchError, ServiceFilter } from './../../models/service.model';
 import { Action } from '@ngrx/store';
+import { SearchError, Service, ServiceFilter } from './../../models/service.model';
 
 export enum ServicesActionsTypes {
   Search = '[SERVICES] Search',

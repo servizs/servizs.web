@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { Observable, of } from 'rxjs';
 import { SearchFacade } from '../search.facade';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-search-container',
@@ -11,6 +11,7 @@ import * as moment from 'moment';
 export class SearchContainerComponent implements OnInit {
   services$ = new Observable<any>();
   userLocation$: Observable<any>;
+  canHide = true;
   private searchQuery = '';
   private geoLocation: any = {};
   constructor(private readonly searchFacade: SearchFacade) {
@@ -22,6 +23,7 @@ export class SearchContainerComponent implements OnInit {
   ngOnInit() {}
 
   search(searchQuery: string) {
+    this.canHide = false;
     this.searchQuery = searchQuery;
     this.searchFacade.findServices({
       query: searchQuery,
