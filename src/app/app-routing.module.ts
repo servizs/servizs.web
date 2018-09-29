@@ -1,15 +1,15 @@
-import { NotFoundPageComponent } from './core/components/not-found-page.component';
-import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { NotFoundPageComponent } from './core/components/not-found-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  /* {
-    path: 'home',
-    loadChildren: './home/home.module#HomeModule'
-    // canActivate: [AuthGuard]
-  },*/
+  {
+    path: 'tasker',
+    loadChildren: './tasker/tasker.module#TaskerModule'
+    // canActivate: [AuthGuard],
+  },
   { path: '**', component: NotFoundPageComponent }
 ];
 

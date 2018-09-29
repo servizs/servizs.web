@@ -1,24 +1,24 @@
-import { environment } from './../environments/environment';
-import { reducers, metaReducers } from './store/reducers/index';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './core/components/app.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SearchModule } from './search/search.module';
-import { MaterialModule } from './material/material.module';
-import { CoreModule } from './core/core.module';
-import { HomeModule } from './home/home.module';
-import { LandingPageComponent } from './home/components/landing-page.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { StoreModule } from '@ngrx/store';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MomentModule } from 'ngx-moment';
-import { HttpClientModule } from '@angular/common/http';
+import { environment } from './../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './core/components/app.component';
+import { CoreModule } from './core/core.module';
+import { LandingPageComponent } from './home/components/landing-page.component';
+import { HomeModule } from './home/home.module';
+import { MaterialModule } from './material/material.module';
+import { SearchModule } from './search/search.module';
 import { SharedModule } from './shared/shared.module';
+import { metaReducers, reducers } from './store/reducers/index';
+
 @NgModule({
   declarations: [LandingPageComponent],
   imports: [

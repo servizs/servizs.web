@@ -1,5 +1,5 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Service } from './../models/service.model';
-import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-service-preview',
   templateUrl: './service-preview.component.html',
@@ -8,6 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ServicePreviewComponent implements OnInit {
   @Input()
   service: Service;
+
+  @Output()
+  viewTaskerDetails: EventEmitter<string> = new EventEmitter<string>();
+
   constructor() {}
 
   ngOnInit() {}
