@@ -1,5 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,6 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MomentModule } from 'ngx-moment';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './core/components/app.component';
 import { CoreModule } from './core/core.module';
 import { LandingPageComponent } from './home/components/landing-page.component';
@@ -51,7 +54,10 @@ import { metaReducers, reducers } from './store/reducers/index';
 
     EffectsModule.forRoot([]),
 
-    SharedModule
+    SharedModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'my-app-name'), // TODO.
+    AngularFireAuthModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
