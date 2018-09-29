@@ -1,14 +1,25 @@
 <a [routerLink]="['/books', id]">
   <mat-card>
     <mat-card-title-group>
-      <img mat-card-sm-image *ngIf="thumbnail" [src]="thumbnail" />
-      <mat-card-title>{{ service.taskrName }}</mat-card-title>
-      <mat-card-subtitle *ngIf="subtitle">{{ service.taskrName }}</mat-card-subtitle>
+      <img mat-card-sm-image *ngIf="service.picture" [src]="service.picture" />
+      <mat-card-title>{{ service.taskerName }}</mat-card-title>
+
     </mat-card-title-group>
     <mat-card-content>
-      <p *ngIf="description">{{ service.taskrName }}</p>
+      <mat-card-subtitle>{{ service.profileSummary }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ service.servicesOffered.join(',') }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ service.Location }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ service.badge }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ service.ratings }}</mat-card-subtitle>
+
     </mat-card-content>
     <mat-card-footer>
+      <div *ngFor="let review of service.reviews">
+        <img mat-card-sm-image *ngIf="review.picture" [src]="review.picture" />
+        <mat-card-subtitle>{{ review.picture }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ review.rating }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ review.comment }}</mat-card-subtitle>
+      </div>
 
     </mat-card-footer>
   </mat-card>

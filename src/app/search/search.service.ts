@@ -1,9 +1,9 @@
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { URL } from './../shared/config';
 import { DataService } from './../shared/data-service';
 import { Service, ServiceFilter } from './models/service.model';
-import { Observable, of, empty } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { filter, take, map } from 'rxjs/operators';
 
 declare const google: any;
 @Injectable()
@@ -13,18 +13,48 @@ export class SearchService {
   getServices(filter: ServiceFilter): Observable<Service[]> {
     return of([
       {
-        taskrId: '123',
-        taskrName: 'vipin',
+        userId: '123',
+        taskerName: 'vipin',
         servicesOffered: ['Handy Man', 'TVMounting'],
         rating: 4,
-        reviews: []
+        reviews: [
+          {
+            reviewerPicture: '',
+            rating: 4,
+            comment: 'Very Good'
+          },
+          {
+            reviewerPicture: '',
+            rating: 8,
+            comment: 'Very Good'
+          }
+        ],
+        badge: 'Gold',
+        picture: '',
+        profileSummary: 'I am a handy man',
+        Location: 'Brampton'
       },
       {
-        taskrId: '1234',
-        taskrName: 'vipin',
+        userId: '1234',
+        taskerName: 'vipin',
         servicesOffered: ['PLumping', 'TVMounting'],
         rating: 4,
-        reviews: []
+        reviews: [
+          {
+            reviewerPicture: '',
+            rating: 4,
+            comment: 'Very Good'
+          },
+          {
+            reviewerPicture: '',
+            rating: 8,
+            comment: 'Very Good'
+          }
+        ],
+        badge: 'Gold',
+        picture: '',
+        profileSummary: 'I am a handy man',
+        Location: 'Brampton'
       }
     ]);
   }

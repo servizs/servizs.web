@@ -1,9 +1,13 @@
 export interface Service {
-  taskrId: string;
-  taskrName: String;
+  userId: string;
+  taskerName: String;
   servicesOffered: Array<string>;
   rating: number;
-  reviews: Array<string>;
+  reviews: Array<Review>;
+  badge: string;
+  picture: string;
+  profileSummary: string;
+  Location: string;
 }
 
 export interface SearchError {
@@ -17,4 +21,10 @@ export interface ServiceFilter {
   city?: string;
   country?: string;
   postalCode?: string;
+}
+
+export interface Review {
+  reviewerPicture: string;
+  rating: number;
+  comment: string;
 }
