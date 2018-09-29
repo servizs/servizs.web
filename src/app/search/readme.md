@@ -1,0 +1,11 @@
+search.module
+--> Search-Container
+--------> Search Box
+--------> Search-list.component
+--> Search-Facade
+--> Store
+-----> Actions
+-----> Reducers
+-----> Effects
+-----> Search.State
+--> Search-Services

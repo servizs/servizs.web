@@ -1,0 +1,13 @@
+<div fxLayout="row" fxLayoutAlign="start start" class='date-box'>
+  <button type="button" (click)="prevWeek()">Prev Week</button>
+  <div fxFlex="1 1 auto" *ngFor="let date of dateRanges">
+    <mat-card>
+      <mat-card-content>
+        <a href="#" (click)="selectDate(date)">{{date}}</a> </mat-card-content>
+    </mat-card>
+  </div><button type="button" (click)="nextWeek()">Next Week</button>
+</div>
+
+<h2>
+  user location {{location}}
+</h2>
