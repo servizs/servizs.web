@@ -1,0 +1,24 @@
+<mat-card *ngIf="tasker">
+  <mat-card-title-group>
+    <img mat-card-sm-image *ngIf="tasker.picture" [src]="tasker.picture" />
+    <mat-card-title>{{ tasker.firstName }} {{ tasker.lastName }}</mat-card-title>
+
+  </mat-card-title-group>
+  <mat-card-content>
+    <mat-card-subtitle>{{ tasker.location }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ tasker.services.join(',') }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ tasker.rating }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ tasker.badge }}</mat-card-subtitle>
+  </mat-card-content>
+  <mat-card-footer>
+    <div *ngFor="let review of tasker.reviews">
+      <img mat-card-sm-image *ngIf="tasker.reviews" [src]="review.picture" />
+      <mat-card-subtitle>{{ review.picture }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ review.rating }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ review.comment }}</mat-card-subtitle>
+    </div>
+  </mat-card-footer>
+</mat-card>
+<mat-card>
+  <button mat-raised-button color="primary">Get the service</button>
+</mat-card>

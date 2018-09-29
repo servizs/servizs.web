@@ -1,12 +1,12 @@
-import { skip } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import * as searchActions from './store/actions/services.actions';
-import * as layoutActions from '../core/store/actions/layout.actions';
-import { getServices } from './store/reducers/search.reducer';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as fromServices from './store/reducers/index';
+import { skip } from 'rxjs/operators';
+import * as layoutActions from '../core/store/actions/layout.actions';
+import * as fromTasker from '../tasker/store/actions/tasker.actions';
 import { ServiceFilter } from './models/service.model';
+import * as searchActions from './store/actions/services.actions';
+import * as fromServices from './store/reducers/index';
 
 @Injectable()
 export class SearchFacade {
@@ -32,5 +32,9 @@ export class SearchFacade {
 
   findUserLocation(geoCodes: any) {
     this.store.dispatch(new searchActions.GetUserLocation(geoCodes));
+  }
+
+  viewTaskerDetails(userId: string) {
+    this.store.dispatch(new fromTasker.ViewTaskerDetails(userId));
   }
 }
