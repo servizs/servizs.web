@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { MaterialModule } from './../material/material.module';
 import { SharedModule } from './../shared/shared.module';
-import { AuthFacade } from './auth-facade.service';
-import { AuthService } from './auth-service.service';
+import { AuthRoutingModule } from './auth-routing.module';
+import { AuthFacade } from './auth.facade';
+import { AuthService } from './auth.service';
 import { LoginComponent } from './components/pure/login.component';
 import { SignupComponent } from './components/pure/signup.component';
 import { LoginContainerComponent } from './components/smart/login-container.component';
 import { SignupContainerComponent } from './components/smart/signup-container.component';
-import { AuthEffects } from './store/effects/auth-effects.service';
+import { AuthEffects } from './store/effects/auth.effects';
 import { reducers } from './store/reducer/index';
 @NgModule({
   imports: [
@@ -18,9 +20,13 @@ import { reducers } from './store/reducer/index';
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([AuthEffects]),
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    AuthRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [AuthFacade, AuthService],
-  declarations: [LoginContainerComponent, SignupContainerComponent, SignupComponent, LoginComponent]
+  declarations: [LoginContainerComponent, SignupContainerComponent, SignupComponent, LoginComponent],
+  exports: [SignupContainerComponent, LoginContainerComponent],
+  entryComponents: [SignupComponent]
 })
 export class AuthModule {}

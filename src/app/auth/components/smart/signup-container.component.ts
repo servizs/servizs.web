@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { SignupComponent } from '../pure/signup.component';
 
 @Component({
   selector: 'app-signup-container',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup-container.component.css']
 })
 export class SignupContainerComponent implements OnInit {
+  constructor(public dialog: MatDialog) {}
 
-  constructor() { }
+  openSignupDialog(): void {
+    const dialogRef = this.dialog.open(SignupComponent, {
+      width: '400px'
+      //  data: {name: this.name, animal: this.animal}
+    });
 
-  ngOnInit() {
+    dialogRef.afterClosed().subscribe(result => {
+      /* console.log('The dialog was closed');
+      this.animal = result;*/
+    });
   }
 
+  ngOnInit() {}
 }

@@ -5,8 +5,9 @@ export enum AuthActionTypes {
   SignUp = '[AUTH] SignUp',
   SignUpSuccess = '[AUTH] Sign Up Success',
   SignUpFailed = '[AUTH] SignUp Failed',
-  SignIn = '[AUTH] Sign Up Success',
-  SignInSuccess = '[AUTH] SignIn',
+
+  SignIn = '[AUTH] Sign In',
+  SignInSuccess = '[AUTH] SignIn Success',
   SignInFailed = '[AUTH] Sign In Failed'
 }
 
@@ -20,6 +21,7 @@ export class SignUpSuccess implements Action {
 export class SignUpFailed implements Action {
   readonly type = AuthActionTypes.SignUpFailed;
 }
+
 export class SignIn implements Action {
   readonly type = AuthActionTypes.SignIn;
   constructor(public signIn: fromAuthModel.SignIn) {}

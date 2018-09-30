@@ -1,6 +1,5 @@
-import { SignUp } from '../../model/auth.model';
+import { SignIn, SignUp } from '../../model/auth.model';
 import * as fromAuthActions from '../actions/auth.actions';
-import { SignIn } from './../actions/auth.actions';
 
 export interface State {
   signIn: SignIn;
@@ -52,7 +51,6 @@ export function reducer(state = initialState, action: fromAuthActions.AuthAction
       return {
         ...state,
         signIn: null,
-
         error: null
       };
     }
@@ -70,4 +68,4 @@ export function reducer(state = initialState, action: fromAuthActions.AuthAction
   }
 }
 
-export const getTaskerDetails = (state: State) => state.taskerDetails;
+// export const getTaskerDetails = (state: State) => state.taskerDetails;

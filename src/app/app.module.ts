@@ -12,7 +12,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MomentModule } from 'ngx-moment';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './core/components/app.component';
 import { CoreModule } from './core/core.module';
 import { LandingPageComponent } from './home/components/landing-page.component';
@@ -56,8 +55,7 @@ import { metaReducers, reducers } from './store/reducers/index';
 
     SharedModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'my-app-name'), // TODO.
-    AngularFireAuthModule,
-    AuthModule
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
