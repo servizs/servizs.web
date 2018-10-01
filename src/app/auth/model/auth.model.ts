@@ -6,9 +6,17 @@ export interface SignUp {
   country: string;
   emailAddress: string;
   password: string;
+  uid?: string;
 }
 
 export interface SignIn {
   emailAddress: string;
   password: string;
+}
+
+export enum SignupRoute {
+  None = 'None',
+  Google = 'Google',
+  Facebook = 'Facebook',
+  Twitter = 'Twitter'
 }

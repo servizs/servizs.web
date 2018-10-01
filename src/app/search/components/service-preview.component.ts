@@ -3,7 +3,7 @@ import { Service } from './../models/service.model';
 @Component({
   selector: 'app-service-preview',
   templateUrl: './service-preview.component.html',
-  styleUrls: ['./service-preview.component.css']
+  styleUrls: ['./service-preview.component.scss']
 })
 export class ServicePreviewComponent implements OnInit {
   @Input()

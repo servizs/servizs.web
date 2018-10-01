@@ -27,6 +27,6 @@ import { reducers } from './store/reducer/index';
   providers: [AuthFacade, AuthService],
   declarations: [LoginContainerComponent, SignupContainerComponent, SignupComponent, LoginComponent],
   exports: [SignupContainerComponent, LoginContainerComponent],
-  entryComponents: [SignupComponent]
+  entryComponents: [SignupComponent, LoginComponent]
 })
 export class AuthModule {}

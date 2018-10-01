@@ -1,5 +1,6 @@
-import { SignIn, SignUp } from '../../model/auth.model';
+import { SignIn } from '../../model/auth.model';
 import * as fromAuthActions from '../actions/auth.actions';
+import { SignUp } from './../../model/auth.model';
 
 export interface State {
   signIn: SignIn;
@@ -20,21 +21,25 @@ export function reducer(state = initialState, action: fromAuthActions.AuthAction
         ...state,
         error: null,
         signIn: action.signIn,
-        signUp: null
+        signUp: <any>{}
       };
     }
 
     case fromAuthActions.AuthActionTypes.SignInSuccess: {
       return {
         ...state,
-        error: null
+        error: null,
+        signIn: action.signIn,
+        signUp: <any>{}
       };
     }
 
     case fromAuthActions.AuthActionTypes.SignInFailed: {
       return {
         ...state,
-        error: null
+        error: 'Sign in failed',
+        signUp: <any>{},
+        signIn: <any>{}
       };
     }
 
@@ -42,7 +47,7 @@ export function reducer(state = initialState, action: fromAuthActions.AuthAction
       return {
         ...state,
         error: null,
-        signIn: null,
+        signIn: <any>{},
         signUp: action.signUp
       };
     }
@@ -50,7 +55,7 @@ export function reducer(state = initialState, action: fromAuthActions.AuthAction
     case fromAuthActions.AuthActionTypes.SignUpSuccess: {
       return {
         ...state,
-        signIn: null,
+        signUp: action.signUp,
         error: null
       };
     }
@@ -58,7 +63,9 @@ export function reducer(state = initialState, action: fromAuthActions.AuthAction
     case fromAuthActions.AuthActionTypes.SignUpFailed: {
       return {
         ...state,
-        error: null
+        error: 'Sign up failed',
+        signUp: <any>{},
+        signIn: <any>{}
       };
     }
 
@@ -67,5 +74,3 @@ export function reducer(state = initialState, action: fromAuthActions.AuthAction
     }
   }
 }
-
-// export const getTaskerDetails = (state: State) => state.taskerDetails;

@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
-import { AuthFacade } from './../../auth.facade';
+import * as fromAuthModel from '../../model/auth.model';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
   //  @Inject(MAT_DIALOG_DATA) public data: DialogData
   signupForm: FormGroup;
-  constructor(
-    public dialogRef: MatDialogRef<SignupComponent>,
-    private formBuilder: FormBuilder,
-    private authFacade: AuthFacade
-  ) {}
+  @Output()
+  signUp = new EventEmitter<fromAuthModel.SignUp>();
+  @Output()
+  signUpWithOAuth = new EventEmitter<fromAuthModel.SignupRoute>();
+
+  @Input()
+  error: string;
+
+  constructor(public dialogRef: MatDialogRef<SignupComponent>, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -45,11 +49,19 @@ export class SignupComponent implements OnInit {
 
   async signup() {
     // this.loading = true;
+    if (this.signupForm.invalid) {
+      return false;
+    }
 
-    const formValue = this.signupForm.value;
-    this.authFacade.signUp(formValue);
+    this.signUp.emit(this.signupForm.value as fromAuthModel.SignUp);
+  }
 
-    // TODO: pass values to facade and fire base.
+  loginWithGoogle() {
+    this.signUpWithOAuth.emit(fromAuthModel.SignupRoute.Google);
+  }
+
+  loginWithFb() {
+    this.signUpWithOAuth.emit(fromAuthModel.SignupRoute.Facebook);
   }
 
   /*

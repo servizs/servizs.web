@@ -8,7 +8,7 @@ import { TaskerFacade } from '../tasker.facade';
 @Component({
   selector: 'app-tasker-detail-container',
   templateUrl: './tasker-detail-container.component.html',
-  styleUrls: ['./tasker-detail-container.component.css']
+  styleUrls: ['./tasker-detail-container.component.scss']
 })
 export class TaskerDetailContainerComponent implements OnInit, OnDestroy {
   private actionsSubscription: Subscription;

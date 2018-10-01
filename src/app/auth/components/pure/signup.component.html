@@ -1,85 +1,99 @@
-<h3>Sign up</h3>
-<form class="example-form" [formGroup]="signupForm" (ngSubmit)="signup()">
-  <div class="login-container">
-    <table class="example-full-width table" cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="First name" formControlName="firstName" name="firtName" required>
-            <!--<span *ngIf="firstName.invalid && firstName.touched">
+<div layout="error" *ngIf="error">
+  {{error}}
+</div>
+
+<div layout="row">
+  <div flex flex-gt-sm="50" offset-gt-sm="25">
+    <div layout-padding>
+      <h3>Sign up</h3>
+      <form class="example-form" [formGroup]="signupForm" (ngSubmit)="signup()">
+        <div class="login-container">
+          <table class="example-full-width table" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="First name" formControlName="firstName" name="firtName" required>
+                  <!--<span *ngIf="firstName.invalid && firstName.touched">
               First name is invalid
             </span>-->
 
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Last name" formControlName="lastName" name="lastName" required>
-            <!--<span *ngIf="lastName.invalid && lastName.touched">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Last name" formControlName="lastName" name="lastName" required>
+                  <!--<span *ngIf="lastName.invalid && lastName.touched">
               Last name is invalid
             </span>-->
 
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Country" formControlName="country" name="country" required>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Country" formControlName="country" name="country" required>
 
-            <!--<span *ngIf="country.invalid && country.touched">
+                  <!--<span *ngIf="country.invalid && country.touched">
               Country is invalid
             </span>-->
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Province" formControlName="province" name="province" required>
-            <!-- <span *ngIf="province.invalid && province.touched">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Province" formControlName="province" name="province" required>
+                  <!-- <span *ngIf="province.invalid && province.touched">
               Province is invalid
             </span>-->
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="City" formControlName="city" name="city" required>
-            <!--  <span *ngIf="city.invalid && city.touched">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="City" formControlName="city" name="city" required>
+                  <!--  <span *ngIf="city.invalid && city.touched">
               City is invalid
             </span>-->
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email address" formControlName="emailAddress" name="emailaddress" type="email" required>
-            <!--  <span *ngIf="emailAddress.invalid && emailAddress.touched">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Email address" formControlName="emailAddress" name="emailaddress" type="email" required>
+                  <!--  <span *ngIf="emailAddress.invalid && emailAddress.touched">
               Email is invalid
             </span>-->
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password" formControlName="password" type="password" name="password" required>
-            <!--<span *ngIf="password.invalid && password.touched">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Password" formControlName="password" type="password" name="password" required>
+                  <!--<span *ngIf="password.invalid && password.touched">
               Password is invalid
             </span>-->
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
-  </div>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+        </div>
 
-  <div class="login-container-btn-group">
-    <button mat-raised-button color="primary" class="login-btn" [disabled]="signupForm.invalid">Sign up</button>
-    <button mat-button color="primary" typ="button">Already have an account? Login here.</button>
+        <div class="login-container-btn-group">
+          <button mat-raised-button color="primary" class="login-btn" [disabled]="signupForm.invalid">Sign up</button>
+          <button mat-button color="primary" typ="button">Already have an account? Login here.</button>
+        </div>
+      </form>
+    </div>
+    <div layout-padding>
+      <button mat-raised-button color="warn" class="login-btn" (click)="loginWithGoogle()">Login with Google</button>
+      <button mat-raised-button color="accent" class="login-btn" (click)="loginWithFb()">Login with Facebook</button>
+    </div>
   </div>
-</form>
+</div>
