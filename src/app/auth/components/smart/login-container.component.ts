@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { AuthFacade } from '../../auth.facade';
+import * as fromAuthModel from '../../model/auth.model';
 import { LoginComponent } from './../pure/login.component';
 
 @Component({
@@ -8,7 +10,7 @@ import { LoginComponent } from './../pure/login.component';
   styleUrls: ['./login-container.component.scss']
 })
 export class LoginContainerComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private authFacade: AuthFacade) {}
 
   openSignupDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
@@ -20,7 +22,18 @@ export class LoginContainerComponent implements OnInit {
       /* console.log('The dialog was closed');
       this.animal = result;*/
     });
+
+    dialogRef.componentInstance.login$.subscribe(this.login.bind(this));
+    dialogRef.componentInstance.loginWithOAuth$.subscribe(this.loginWithOAuth.bind(this));
+    this.authFacade.error$.subscribe(error => (dialogRef.componentInstance.error = error));
   }
 
   ngOnInit() {}
+  loginWithOAuth(route: fromAuthModel.SignupRoute) {
+    this.authFacade.loginWithOAuth(route);
+  }
+
+  login(formData: fromAuthModel.SignUp) {
+    this.authFacade.login(formData);
+  }
 }

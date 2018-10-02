@@ -22,6 +22,10 @@ export class AuthFacade {
   }
 
   loginWithOAuth(route: SignupRoute) {
-    this.store.dispatch(new fromAuthActions.SignUp(<any>{}, route));
+    this.store.dispatch(new fromAuthActions.SignIn(<any>{}, route));
+  }
+
+  login(formData: fromAuthModel.SignIn) {
+    this.store.dispatch(new fromAuthActions.SignIn(formData, SignupRoute.None));
   }
 }

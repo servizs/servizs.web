@@ -26,7 +26,7 @@ export class SignUpFailed implements Action {
 
 export class SignIn implements Action {
   readonly type = AuthActionTypes.SignIn;
-  constructor(public signIn: fromAuthModel.SignIn) {}
+  constructor(public signIn: fromAuthModel.SignIn, public signupRoute: SignupRoute) {}
 }
 export class SignInSuccess implements Action {
   readonly type = AuthActionTypes.SignInSuccess;

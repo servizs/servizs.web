@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
-import { SignUp } from './model/auth.model';
+import { SignIn, SignUp } from './model/auth.model';
 
 @Injectable()
 export class AuthService {
   constructor(public afAuth: AngularFireAuth) {}
+
+  async signInUser(formData: SignIn): Promise<any> {
+    return await this.afAuth.auth.signInWithEmailAndPassword(formData.emailAddress, formData.password);
+  }
 
   async signupUser(formData: SignUp): Promise<any> {
     return await this.afAuth.auth.createUserWithEmailAndPassword(formData.emailAddress, formData.password);

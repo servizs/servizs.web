@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
-import { AuthFacade } from './../../auth.facade';
-
+import * as fromAuthModel from '../../model/auth.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,11 +9,14 @@ import { AuthFacade } from './../../auth.facade';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(
-    public dialogRef: MatDialogRef<LoginComponent>,
-    private formBuilder: FormBuilder,
-    private authFacade: AuthFacade
-  ) {}
+  @Output()
+  login$ = new EventEmitter<fromAuthModel.SignIn>();
+  @Output()
+  loginWithOAuth$ = new EventEmitter<fromAuthModel.SignupRoute>();
+
+  @Input()
+  error: string;
+  constructor(public dialogRef: MatDialogRef<LoginComponent>, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -29,17 +31,25 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async login() {
-    // this.loading = true;
-
-    const formValue = this.loginForm.value;
-    this.authFacade.signUp(formValue);
-
-    // TODO: pass values to facade and fire base.
-  }
-
   /*
   onNoClick(): void {
     this.dialogRef.close();
   }*/
+
+  async login() {
+    // this.loading = true;
+    if (this.loginForm.invalid) {
+      return false;
+    }
+
+    this.login$.emit(this.loginForm.value as fromAuthModel.SignIn);
+  }
+
+  loginWithGoogle() {
+    this.loginWithOAuth$.emit(fromAuthModel.SignupRoute.Google);
+  }
+
+  loginWithFb() {
+    this.loginWithOAuth$.emit(fromAuthModel.SignupRoute.Facebook);
+  }
 }
