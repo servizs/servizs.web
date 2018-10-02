@@ -1,14 +1,13 @@
-import { AppState } from './../../store/reducers/index';
-import * as layout from '../store/reducers/layout.reducer';
-import { Store, select } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Loading } from '../store/actions/layout.actions';
+import * as layout from '../store/reducers/layout.reducer';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.css']
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
   isLoading$: Observable<any>;

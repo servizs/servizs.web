@@ -1,9 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 @Component({
   selector: 'app-search-filter',
   templateUrl: './search-filter.component.html',
-  styleUrls: ['./search-filter.component.css']
+  styleUrls: ['./search-filter.component.scss']
 })
 export class SearchFilterComponent implements OnInit {
   @Input()

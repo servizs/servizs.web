@@ -10,6 +10,11 @@ export const routes: Routes = [
     loadChildren: './tasker/tasker.module#TaskerModule'
     // canActivate: [AuthGuard],
   },
+  /* {
+    path: 'auth',
+    loadChildren: './auth/auth.module#AuthModule'
+    // canActivate: [AuthGuard],
+  },*/
   { path: '**', component: NotFoundPageComponent }
 ];
 

@@ -1,5 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -51,7 +53,9 @@ import { metaReducers, reducers } from './store/reducers/index';
 
     EffectsModule.forRoot([]),
 
-    SharedModule
+    SharedModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'my-app-name'), // TODO.
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

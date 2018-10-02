@@ -1,0 +1,30 @@
+.lock-image {
+  background: url('../../../../assets/svgs/baseline-lock-24px.svg');
+}
+
+.login-container {
+  display: flex;
+}
+
+.table {
+  flex: 1;
+  flex-basis: 100%;
+  order: 1;
+  flex-direction: row;
+}
+
+.login-btn {
+  flex: 1;
+  order: 2;
+  flex-direction: column;
+}
+
+.login-container-btn-group {
+  display: flex;
+}
+.login-container-btn-group button {
+  order: 1;
+}
+.login-container-btn-group a {
+  order: 2;
+}

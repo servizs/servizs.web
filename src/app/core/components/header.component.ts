@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
     <button mat-icon-button (click)="openMenu.emit()">
       <mat-icon>menu</mat-icon>
     </button>
+    <app-login-container></app-login-container>
+    <app-signup-container></app-signup-container>
     <ng-content></ng-content>
   </mat-toolbar>`,
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   constructor() {}

@@ -1,0 +1,40 @@
+<div layout="row">
+  <div flex flex-gt-sm="50" offset-gt-sm="25">
+    <div layout-padding>
+      <form name="" [formGroup]="loginForm" (ngSubmit)="login()">
+        <h2 class="form-login-heading">Login</h2>
+        <table class="example-full-width table" cellspacing="0">
+
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email address" formControlName="emailAddress" name="emailaddress" type="email" required>
+                <!--  <span *ngIf="emailAddress.invalid && emailAddress.touched">
+                    Email is invalid
+                  </span>-->
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Password" formControlName="password" type="password" name="password" required>
+                <!--<span *ngIf="password.invalid && password.touched">
+                    Password is invalid
+                  </span>-->
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+        <div class="login-container-btn-group" layout-padding>
+          <button mat-raised-button type="submit" color="primary" class="login-btn" [disabled]="loginForm.invalid">Sign up</button>
+          <button mat-button color="primary" type="button">Already have an account? Login here.</button>
+        </div>
+      </form>
+    </div>
+    <div layout-padding>
+      <button mat-raised-button color="warn" class="login-btn" (click)="loginWithGoogle()">Login with Google</button>
+      <button mat-raised-button color="accent" class="login-btn" (click)="loginWithFb()">Login with Facebook</button>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@ import { Service } from './../models/service.model';
   template: `
   <app-service-preview *ngFor="let service of services" [service]="service" 
     (viewTaskerDetails)="viewTaskerDetails.emit($event)"></app-service-preview>`,
-  styleUrls: ['./service-preview-list.component.css']
+  styleUrls: ['./service-preview-list.component.scss']
 })
 export class ServicePreviewListComponent implements OnInit {
   @Input()

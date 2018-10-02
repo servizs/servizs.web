@@ -4,7 +4,7 @@ import { Tasker } from './../model/tasker.model';
 @Component({
   selector: 'app-tasker-detail',
   templateUrl: './tasker-detail.component.html',
-  styleUrls: ['./tasker-detail.component.css']
+  styleUrls: ['./tasker-detail.component.scss']
 })
 export class TaskerDetailComponent implements OnInit {
   @Input()
