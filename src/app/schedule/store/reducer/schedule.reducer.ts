@@ -1,25 +1,25 @@
-import * as fromScheduleActions from '../actions/tasker.actions';
-import { BookTasker } from './../../model/tasker.model';
+import * as fromScheduleActions from '../actions/schedule.actions';
+import { ScheduleInfo } from './../../model/schedule.model';
 
 export interface State {
-  schedule: BookTasker;
+  requestedSchedule: ScheduleInfo;
   error: string;
 }
 
 const initialState: State = {
-  schedule: <any>{},
+  requestedSchedule: <any>{},
   error: ''
 };
 
 export function reducer(state = initialState, action: fromScheduleActions.ScheduleActions): State {
   switch (action.type) {
     case fromScheduleActions.ScheduleActionTyes.ScheduleAService: {
-      const bookTasker = action.bookTasker;
+      const bookTasker = action.scheduleInfo;
 
       return {
         ...state,
         error: null,
-        schedule: bookTasker
+        requestedSchedule: bookTasker
       };
     }
 
@@ -29,4 +29,4 @@ export function reducer(state = initialState, action: fromScheduleActions.Schedu
   }
 }
 
-export const getRequestedSchedule = (state: State) => state.schedule;
+export const getRequestedSchedule = (state: State) => state.requestedSchedule;

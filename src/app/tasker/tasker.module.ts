@@ -5,10 +5,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { MaterialModule } from './../material/material.module';
 import { SharedModule } from './../shared/shared.module';
-import { ConfirmTaskerComponent } from './components/pure/confirm-tasker.component';
-import { ConfirmTaskerContainerComponent } from './components/smart/confirm-tasker-container.component';
-import { TaskerDetailContainerComponent } from './components/tasker-detail-container.component';
-import { TaskerDetailComponent } from './components/tasker-detail.component';
+import { TaskerDetailComponent } from './components/pure/tasker-detail.component';
+import { TaskerDetailContainerComponent } from './components/smart/tasker-detail-container.component';
 import { TaskerEffects } from './store/effects/tasker.effects';
 import { reducers } from './store/reducer';
 import { TaskerRoutingModule } from './tasker-routing.module';
@@ -26,11 +24,6 @@ import { TaskerService } from './tasker.service';
     ReactiveFormsModule
   ],
   providers: [TaskerService, TaskerFacade],
-  declarations: [
-    TaskerDetailContainerComponent,
-    TaskerDetailComponent,
-    ConfirmTaskerContainerComponent,
-    ConfirmTaskerComponent
-  ]
+  declarations: [TaskerDetailContainerComponent, TaskerDetailComponent]
 })
 export class TaskerModule {}

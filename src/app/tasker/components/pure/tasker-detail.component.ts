@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Tasker } from './../model/tasker.model';
+import { Tasker } from '../../model/tasker.model';
 
 @Component({
   selector: 'app-tasker-detail',

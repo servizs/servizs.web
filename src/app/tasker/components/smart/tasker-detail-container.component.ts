@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Tasker } from '../model/tasker.model';
-import { TaskerFacade } from '../tasker.facade';
+import { Tasker } from '../../model/tasker.model';
+import { TaskerFacade } from '../../tasker.facade';
 
 @Component({
   selector: 'app-tasker-detail-container',
@@ -16,7 +16,12 @@ export class TaskerDetailContainerComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private taskerFacade: TaskerFacade) {
     this.tasker$ = this.taskerFacade.tasker$;
     this.actionsSubscription = this.route.params
-      .pipe(map(params => this.taskerFacade.getTaskerDetails(params.userId)))
+      .pipe(
+        map(params => {
+          this.taskerFacade.selectTasker(params.userId);
+          return this.taskerFacade.getTaskerDetails(params.userId);
+        })
+      )
       .subscribe();
   }
 

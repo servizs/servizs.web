@@ -1,18 +1,19 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BookTasker, Tasker } from './../../model/tasker.model';
+import { Tasker } from '../../../tasker/model/tasker.model';
+import { ScheduleInfo } from '../../model/schedule.model';
 
 @Component({
-  selector: 'app-confirm-tasker',
-  templateUrl: './confirm-tasker.component.html',
-  styleUrls: ['./confirm-tasker.component.css']
+  selector: 'app-schedule-details',
+  templateUrl: './schedule-details.component.html',
+  styleUrls: ['./schedule-details.component.css']
 })
-export class ConfirmTaskerComponent implements OnInit {
+export class ScheduleDetailsComponent implements OnInit {
   @Input()
   tasker: Tasker;
 
   @Output()
-  confirmTheRequestEvent = new EventEmitter<BookTasker>();
+  confirmTheRequestEvent = new EventEmitter<ScheduleInfo>();
 
   scheduleForm: FormGroup;
 
@@ -75,7 +76,7 @@ export class ConfirmTaskerComponent implements OnInit {
       return;
     }
 
-    const bookTasker: BookTasker = <BookTasker>this.scheduleForm.value;
+    const bookTasker: ScheduleInfo = <ScheduleInfo>this.scheduleForm.value;
     this.confirmTheRequestEvent.emit(bookTasker);
   }
 }

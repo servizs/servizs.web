@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TaskerDetailContainerComponent } from './components/smart/tasker-detail-container.component';
+import { ScheduleDetailsContainerComponent } from './components/smart/schedule-details-container.component';
 
 export const routes: Routes = [
   {
-    path: 'tasker/:userId',
-    component: TaskerDetailContainerComponent
+    path: 'schedule',
+    component: ScheduleDetailsContainerComponent
     //  canActivate: [BookExistsGuard]
   }
   /* {
@@ -23,4 +23,4 @@ export const routes: Routes = [
   declarations: [],
   exports: [RouterModule]
 })
-export class TaskerRoutingModule {}
+export class ScheduleRoutingModule {}
