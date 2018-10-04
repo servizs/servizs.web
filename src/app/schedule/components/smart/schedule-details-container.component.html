@@ -1,1 +1,1 @@
-<app-schedule-details [tasker]="tasker$ | async"></app-schedule-details>
+<app-schedule-details [tasker]="tasker$ | async" (confirmTheRequestEvent)="confirmTheRequest($event)"></app-schedule-details>

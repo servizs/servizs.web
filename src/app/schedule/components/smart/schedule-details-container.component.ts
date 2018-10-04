@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Tasker } from '../../../tasker/model/tasker.model';
+import { ScheduleInfo } from '../../model/schedule.model';
 import { ScheduleFacade } from './../../schedule.facade';
 
 @Component({
@@ -12,12 +13,15 @@ import { ScheduleFacade } from './../../schedule.facade';
 export class ScheduleDetailsContainerComponent implements OnInit {
   private actionsSubscription: Subscription;
   tasker$: Observable<Tasker>;
-  constructor(private route: ActivatedRoute, private ScheduleFacade: ScheduleFacade) {
+  constructor(private route: ActivatedRoute, private ScheduleFacade: ScheduleFacade, private router: Router) {
     this.tasker$ = this.ScheduleFacade.tasker$;
   }
 
   ngOnInit() {}
-  ngOnDestroy() {
-    this.actionsSubscription.unsubscribe();
+  ngOnDestroy() {}
+
+  confirmTheRequest(scheduleInfo: ScheduleInfo) {
+    this.ScheduleFacade.scheduleAService(scheduleInfo);
+    this.router.navigate(['/confirm']);
   }
 }

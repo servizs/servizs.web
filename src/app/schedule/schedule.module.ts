@@ -10,14 +10,14 @@ import { ScheduleDetailsContainerComponent } from './components/smart/schedule-d
 import { ScheduleRoutingModule } from './schedule-routing.module';
 import { ScheduleFacade } from './schedule.facade';
 import { ScheduleService } from './schedule.service';
-
+import { reducers } from './store/reducer/index';
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     ScheduleRoutingModule,
-    StoreModule.forFeature('schedule', {})
+    StoreModule.forFeature('schedule', reducers)
   ],
   declarations: [
     ScheduleDetailsContainerComponent,

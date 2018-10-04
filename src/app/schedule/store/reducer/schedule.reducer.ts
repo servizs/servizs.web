@@ -14,12 +14,12 @@ const initialState: State = {
 export function reducer(state = initialState, action: fromScheduleActions.ScheduleActions): State {
   switch (action.type) {
     case fromScheduleActions.ScheduleActionTyes.ScheduleAService: {
-      const bookTasker = action.scheduleInfo;
+      const scheduleInfo = action.scheduleInfo;
 
       return {
         ...state,
         error: null,
-        requestedSchedule: bookTasker
+        requestedSchedule: scheduleInfo
       };
     }
 
