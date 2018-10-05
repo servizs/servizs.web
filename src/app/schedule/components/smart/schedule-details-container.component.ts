@@ -13,6 +13,7 @@ import { ScheduleFacade } from './../../schedule.facade';
 export class ScheduleDetailsContainerComponent implements OnInit {
   private actionsSubscription: Subscription;
   tasker$: Observable<Tasker>;
+
   constructor(private route: ActivatedRoute, private ScheduleFacade: ScheduleFacade, private router: Router) {
     this.tasker$ = this.ScheduleFacade.tasker$;
   }

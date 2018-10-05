@@ -1,3 +1,19 @@
-<p>
-  schedule-confirm works!
-</p>
+<label>{{schedule.tasker.firstName}}</label>
+<label>{{schedule.hours}}</label>
+<mat-card>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="scheduleConfirmForm" (ngSubmit)="confirmSchdule()">
+      <h2 class="example-h2">Please verify and confirm the details</h2>
+
+      <section class="example-section">
+
+        <mat-checkbox class="example-margin" formControlName="canProceed" name="canProceed">Above details are correct.</mat-checkbox>
+
+      </section>
+
+      <mat-card>
+        <button type="submit" mat-raised-button color="primary">Review & Proceed</button>
+      </mat-card>
+    </form>
+  </mat-card-content>
+</mat-card>
