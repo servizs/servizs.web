@@ -19,18 +19,17 @@ export const reducers: ActionReducerMap<ScheduleState> = {
 
 export const getScheduleState = createFeatureSelector<ScheduleState>('schedule');
 
-
 export const getTaskerDetails = createSelector(
   fromTasker.getTaskerState,
   (state: fromTasker.TaskerState) => state.tasker.taskerDetails
 );
 
-export const getScheduleDetails = createSelector(getScheduleState, getTaskerDetails, (schedule, tasker)=> {
+export const getScheduleDetails = createSelector(getScheduleState, getTaskerDetails, (schedule, tasker) => {
   return <ScheduleInfo>{
     tasker: tasker,
     ...schedule.scheduleInfo.requestedSchedule
-  }
-}
+  };
+});
 /*
 export const getScheduleState = createFeatureSelector<State, ScheduleState>('schedule');
 export const getRequestScheduleState = createSelector(
