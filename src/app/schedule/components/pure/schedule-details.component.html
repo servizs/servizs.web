@@ -1,0 +1,164 @@
+<mat-card *ngIf="tasker">
+
+  <mat-card-title-group>
+    <img mat-card-sm-image *ngIf="tasker.picture" [src]="tasker.picture" />
+    <mat-card-title>{{ tasker.firstName }} test {{ tasker.lastName }}</mat-card-title>
+
+  </mat-card-title-group>
+  <mat-card-content>
+    <mat-card-subtitle>{{ tasker.location }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ tasker.services.join(',') }}</mat-card-subtitle>
+
+  </mat-card-content>
+
+</mat-card>
+
+<div>
+  <div>
+    <div>
+      <h3>Complete the form and click continue</h3>
+      <form class="example-form" [formGroup]="scheduleForm" (ngSubmit)="confirmTheService()">
+        <div class="schedule-container">
+          <table class="example-full-width table" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Expected No Of Hours" formControlName="hours" name="hours" required>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Per Hour Cost" formControlName="costPerHour" name="costPerHour" disabled required>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="workDate" name="workDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field>
+                  <mat-select placeholder="Start Time" formControlName="startTime" name="startTime">
+                    <mat-option *ngFor="let time of timeRange" [value]="time">
+                      {{time}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field>
+                  <mat-select placeholder="Start Time" formControlName="endTime" name="endTime">
+                    <mat-option *ngFor="let time of timeRange" [value]="time">
+                      {{time}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="unitNo" formControlName="unitNo" name="unitNo">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="streetNumber" formControlName="streetNumber" name="streetNumber">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="streetName" formControlName="streetName" name="streetName">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="city" formControlName="city" name="city">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="province" formControlName="province" name="province">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="country" formControlName="country" name="country">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="postal code" formControlName="postalCode" name="postalCode">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="phoneNumber" formControlName="phoneNumber" name="phoneNumber">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="emailAddress" formControlName="emailAddress" name="emailAddress">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="More details about the problem" formControlName="workDescription" name="workDescription" type="textarea">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="image" formControlName="image1" name="image1">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="emailAddress" formControlName="image2" name="image2">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <mat-card>
+          <button type="submit" mat-raised-button color="primary">Confirm the Service Request</button>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

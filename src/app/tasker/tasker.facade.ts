@@ -16,4 +16,8 @@ export class TaskerFacade {
   getTaskerDetails(userId: string): void {
     this.store.dispatch(new fromTaskerActions.ViewTaskerDetails(userId));
   }
+
+  selectTasker(selectedUserId: string) {
+    this.store.dispatch(new fromTaskerActions.SelectTasker(selectedUserId));
+  }
 }

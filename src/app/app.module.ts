@@ -17,9 +17,11 @@ import { CoreModule } from './core/core.module';
 import { LandingPageComponent } from './home/components/landing-page.component';
 import { HomeModule } from './home/home.module';
 import { MaterialModule } from './material/material.module';
+import { ScheduleModule } from './schedule/schedule.module';
 import { SearchModule } from './search/search.module';
 import { SharedModule } from './shared/shared.module';
 import { metaReducers, reducers } from './store/reducers/index';
+import { TaskerModule } from './tasker/tasker.module';
 
 @NgModule({
   declarations: [LandingPageComponent],
@@ -30,7 +32,7 @@ import { metaReducers, reducers } from './store/reducers/index';
     MaterialModule,
     CoreModule,
     HomeModule,
-    AppRoutingModule,
+
     SearchModule,
     FlexLayoutModule,
     MomentModule,
@@ -55,7 +57,10 @@ import { metaReducers, reducers } from './store/reducers/index';
 
     SharedModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'my-app-name'), // TODO.
-    AngularFireAuthModule
+    TaskerModule,
+    ScheduleModule,
+    AngularFireAuthModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

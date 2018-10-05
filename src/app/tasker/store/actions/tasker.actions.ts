@@ -2,7 +2,8 @@ import { Action } from '@ngrx/store';
 export enum TaskerActionsTypes {
   ViewTaskerDetails = '[TASKER] View Tasker Details',
   ViewTaskerDetailsCompleted = '[TASKER] View Tasker Details Completed',
-  ViewTaskerDetailsFailed = '[TASKER] View Tasker Details Failed'
+  ViewTaskerDetailsFailed = '[TASKER] View Tasker Details Failed',
+  SelectTasker = '[TASKER] SelectTasker'
 }
 
 export class ViewTaskerDetails implements Action {
@@ -20,4 +21,9 @@ export class ViewTaskerDetailsFailed implements Action {
   constructor(public error: any) {}
 }
 
-export type TaskerActions = ViewTaskerDetails | ViewTaskerDetailsCompleted | ViewTaskerDetailsFailed;
+export class SelectTasker implements Action {
+  readonly type = TaskerActionsTypes.SelectTasker;
+  constructor(public userId: string) {}
+}
+
+export type TaskerActions = ViewTaskerDetails | ViewTaskerDetailsCompleted | ViewTaskerDetailsFailed | SelectTasker;
