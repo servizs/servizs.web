@@ -5,11 +5,11 @@ import { NotFoundPageComponent } from './core/components/not-found-page.componen
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  /*{
+  {
     path: 'tasker',
     loadChildren: './tasker/tasker.module#TaskerModule'
     // canActivate: [AuthGuard],
-  },*/
+  },
   /* {
     path: 'auth',
     loadChildren: './auth/auth.module#AuthModule'
