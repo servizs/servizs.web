@@ -31,21 +31,14 @@ export class PaymentDetailsContainerComponent implements AfterViewInit, OnDestro
   @ViewChild('cardErrors')
   cardErrors: ElementRef;
 
-  @ViewChild('ibanErrors')
-  ibanErrors: ElementRef;
-
   @ViewChild('submitButton')
   submitButton: ElementRef;
-
-  @ViewChild('ibanElement')
-  bankElement: ElementRef;
 
   @ViewChild('paymentForm')
   paymentForm: ElementRef;
 
   card: any;
   cardHandler = this.onCardChange.bind(this);
-  bankHandler = this.onBankChange.bind(this);
   formSubmissionHandler = this.onFormSubmit.bind(this);
   error: string;
 
@@ -103,32 +96,5 @@ export class PaymentDetailsContainerComponent implements AfterViewInit, OnDestro
       console.log('Success!', token);
       // ...send the token to the your backend to process the charge
     }
-  }
-
-  private setUpBankElement() {
-    const ibanOptions = {
-      style,
-      supportedCountries: ['SEPA']
-    };
-    const iban = this.paymentProviderService.elements.create('iban', ibanOptions);
-    iban.mount(this.bankElement.nativeElement);
-  }
-
-  onBankChange({ error, bankName }) {
-    const errors = this.ibanErrors.nativeElement as HTMLElement;
-    if (error) {
-      errors.textContent = error.message;
-      errors.classList.add('visible');
-    } else {
-      error = null;
-      errors.classList.remove('visible');
-
-      /*if (bankName) {
-        updateButtonLabel('sepa_debit', bankName);
-      }*/
-    }
-
-    this.submitButton.nativeElement.disabled = false;
-    this.cd.detectChanges();
   }
 }

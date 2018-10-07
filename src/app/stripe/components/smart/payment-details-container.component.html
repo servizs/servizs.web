@@ -71,46 +71,6 @@
           <input type="radio" name="payment" id="payment-card" value="card" checked>
           <label for="payment-card">Card</label>
         </li>
-        <li>
-          <input type="radio" name="payment" id="payment-ach_credit_transfer" value="ach_credit_transfer" checked>
-          <label for="payment-ach_credit_transfer">Bank Transfer</label>
-        </li>
-        <li>
-          <input type="radio" name="payment" id="payment-alipay" value="alipay">
-          <label for="payment-alipay">Alipay</label>
-        </li>
-        <li>
-          <input type="radio" name="payment" id="payment-bancontact" value="bancontact">
-          <label for="payment-bancontact">Bancontact</label>
-        </li>
-        <li>
-          <input type="radio" name="payment" id="payment-eps" value="eps">
-          <label for="payment-eps">EPS</label>
-        </li>
-        <li>
-          <input type="radio" name="payment" id="payment-ideal" value="ideal">
-          <label for="payment-ideal">iDEAL</label>
-        </li>
-        <li>
-          <input type="radio" name="payment" id="payment-giropay" value="giropay">
-          <label for="payment-giropay">Giropay</label>
-        </li>
-        <li>
-          <input type="radio" name="payment" id="payment-multibanco" value="multibanco">
-          <label for="payment-multibanco">Multibanco</label>
-        </li>
-        <li>
-          <input type="radio" name="payment" id="payment-sepa_debit" value="sepa_debit">
-          <label for="payment-sepa_debit">SEPA Direct Debit</label>
-        </li>
-        <li>
-          <input type="radio" name="payment" id="payment-sofort" value="sofort">
-          <label for="payment-sofort">SOFORT</label>
-        </li>
-        <li>
-          <input type="radio" name="payment" id="payment-wechat" value="wechat">
-          <label for="payment-wechat">WeChat Pay</label>
-        </li>
       </ul>
     </nav>
     <div class="payment-info card visible">
@@ -121,25 +81,7 @@
         </label>
       </fieldset>
     </div>
-    <div class="payment-info sepa_debit">
-      <fieldset>
-        <label>
-          <span>IBAN</span>
-          <div id="iban-element" #ibanElement class="field"></div>
-        </label>
-      </fieldset>
-      <p class="notice">By providing your IBAN and confirming this payment, you’re authorizing Payments Demo and Stripe, our payment
-        provider, to send instructions to your bank to debit your account. You’re entitled to a refund under the terms
-        and conditions of your agreement with your bank.</p>
-    </div>
-    <div class="payment-info ideal">
-      <fieldset>
-        <label>
-          <span>iDEAL Bank</span>
-          <div id="ideal-bank-element" class="field"></div>
-        </label>
-      </fieldset>
-    </div>
+
     <div class="payment-info redirect">
       <p class="notice">You’ll be redirected to the banking site to complete your payment.</p>
     </div>
