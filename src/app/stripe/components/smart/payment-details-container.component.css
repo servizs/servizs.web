@@ -229,7 +229,7 @@ fieldset .select::after {
   right: 20px;
   top: 50%;
   margin-top: -2px;
-  background-image: url(/images/dropdown.svg);
+  background-image: url('../../../../assets/images/dropdown.svg');
   pointer-events: none;
 }
 
@@ -330,7 +330,7 @@ button:active {
   content: '';
   width: 21px;
   height: 15px;
-  background: url(/images/flags.svg);
+  background: url('/assets/images/flags.svg');
   background-position: -1000px -1000px;
   background-repeat: no-repeat;
   margin-right: 10px;
@@ -524,7 +524,7 @@ button:active {
   transition-property: opacity, transform;
   transition-duration: 0.35s;
   transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-  background: url(/images/error.svg) center left no-repeat;
+  background: url('../../../../assets/images/error.svg') center left no-repeat;
   background-size: 15px 15px;
 }
 
@@ -716,19 +716,6 @@ button:active {
   margin-bottom: 30px;
 }
 
-#confirmation .status {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 75px 0 275px;
-  max-width: 75%;
-  height: 350px;
-  margin: 100px auto;
-  background: #fff url(/images/order.svg) 75px center no-repeat;
-  box-shadow: 0 1px 3px 0 rgba(50, 50, 93, 0.15);
-  border-radius: 6px;
-}
-
 #confirmation .status.error {
   display: none;
 }
@@ -855,15 +842,7 @@ button:active {
   #checkout {
     margin-bottom: 0;
   }
-  #confirmation .status {
-    width: auto;
-    height: auto;
-    padding: 120px 15px 15px;
-    background: #fff url(/images/order.svg) center 15px no-repeat;
-    background-size: 68px 86px;
-    box-shadow: 0 1px 3px 0 rgba(50, 50, 93, 0.15);
-    border-radius: 6px;
-  }
+
   #confirmation h1 {
     text-align: center;
   }
