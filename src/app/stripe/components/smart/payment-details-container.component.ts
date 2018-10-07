@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { PaymentProviderService } from '../../payment-provider.service';
+import { PaymentService } from './../../payment.service';
 
 const style = {
   base: {
@@ -42,7 +43,11 @@ export class PaymentDetailsContainerComponent implements AfterViewInit, OnDestro
   formSubmissionHandler = this.onFormSubmit.bind(this);
   error: string;
 
-  constructor(private cd: ChangeDetectorRef, private readonly paymentProviderService: PaymentProviderService) {}
+  constructor(
+    private cd: ChangeDetectorRef,
+    private readonly paymentProviderService: PaymentProviderService,
+    private readonly paymentService: PaymentService
+  ) {}
 
   ngAfterViewInit() {
     this.card = this.paymentProviderService.elements.create('card', { style });
@@ -52,20 +57,9 @@ export class PaymentDetailsContainerComponent implements AfterViewInit, OnDestro
     (this.paymentForm.nativeElement as HTMLElement).addEventListener('submit', this.formSubmissionHandler);
   }
 
-  private onFormSubmit(event) {
+  onFormSubmit(event) {
     event.preventDefault();
-
-    this.paymentProviderService.stripe.createToken(this.card).then(function(result) {
-      if (result.error) {
-        // Inform the user if there was an error.
-        var errorElement = document.getElementById('card-errors');
-        errorElement.textContent = result.error.message;
-      } else {
-        // Send the token to your server.
-        // stripeTokenHandler(result.token);
-        debugger;
-      }
-    });
+    this.paymentService.saveCard(this.card);
   }
 
   ngOnDestroy() {
@@ -85,16 +79,5 @@ export class PaymentDetailsContainerComponent implements AfterViewInit, OnDestro
 
     this.submitButton.nativeElement.disabled = false;
     this.cd.detectChanges();
-  }
-
-  async onSubmit(form: any) {
-    const { token, error } = await this.paymentProviderService.stripe.createToken(this.card);
-
-    if (error) {
-      console.log('Something is wrong:', error);
-    } else {
-      console.log('Success!', token);
-      // ...send the token to the your backend to process the charge
-    }
   }
 }
