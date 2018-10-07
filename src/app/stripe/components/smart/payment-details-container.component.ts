@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
-import { environment } from '../../../../environments/environment';
+import { PaymentProviderService } from '../../payment-provider.service';
 
 @Component({
   selector: 'app-payment-details-container',
@@ -13,15 +13,11 @@ export class PaymentDetailsContainerComponent implements AfterViewInit, OnDestro
   card: any;
   cardHandler = this.onChange.bind(this);
   error: string;
-  stripe: any;
-  elements: any;
-  constructor(private cd: ChangeDetectorRef) {
-    this.stripe = Stripe(environment.stripe.apiPublishableKey);
-    this.elements = this.stripe.elements();
-  }
+
+  constructor(private cd: ChangeDetectorRef, private readonly paymentProviderService: PaymentProviderService) {}
 
   ngAfterViewInit() {
-    this.card = this.elements.create('card');
+    this.card = this.paymentProviderService.elements.create('card');
     this.card.mount(this.cardInfo.nativeElement);
 
     this.card.addEventListener('change', this.cardHandler);
@@ -42,7 +38,7 @@ export class PaymentDetailsContainerComponent implements AfterViewInit, OnDestro
   }
 
   async onSubmit(form: any) {
-    const { token, error } = await this.stripe.createToken(this.card);
+    const { token, error } = await this.paymentProviderService.stripe.createToken(this.card);
 
     if (error) {
       console.log('Something is wrong:', error);

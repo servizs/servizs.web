@@ -46,3 +46,7 @@ curl -X POST https://connect.stripe.com/oauth/token \
 -d client_secret=YOUR_SECRET_KEY \
 -d code=ac_DjvSZOv9bidvtgyFq7qwhdNEhRP41HfP \
 -d grant_type=authorization_code
+
+angular-stripe-example
+
+https://github.com/tnishimura/angular-stripe-elements-demo/tree/master/src/app/stripe-demo
