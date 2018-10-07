@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  stripe: {
+    platformId: 'ca_DjB1FwivH8jv5pZZLOOpUdMevElVeLoo',
+    apiPublishableKey: 'pk_test_Wz3FgFCq7EBlbfI16Fg8dOtU'
+  },
   firebaseConfig: {
     apiKey: 'AIzaSyB0Uu3a7L8ntlpXKYhuAg8vGD0Cvc7tKKk',
     authDomain: 'deft-chariot-217803.firebaseapp.com',
