@@ -5,7 +5,7 @@ import * as fromAuthModel from '../../model/auth.model';
 import { SignupComponent } from '../pure/signup.component';
 import { AuthFacade } from './../../auth.facade';
 import { skip, takeUntil, filter } from 'rxjs/operators';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-signup-container',
@@ -19,13 +19,9 @@ export class SignupContainerComponent implements OnInit, OnDestroy {
   openSignupDialog(): void {
     const dialogRef = this.dialog.open(SignupComponent, {
       width: '400px'
-      //  data: {name: this.name, animal: this.animal}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      /* console.log('The dialog was closed');
-      this.animal = result;*/
-    });
+    dialogRef.afterClosed().subscribe(result => {});
 
     dialogRef.componentInstance.signUp.pipe(takeUntil(this.unsubscribe$)).subscribe(this.signUp.bind(this));
     dialogRef.componentInstance.signUpWithOAuth
