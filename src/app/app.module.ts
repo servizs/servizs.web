@@ -22,6 +22,7 @@ import { ScheduleModule } from './schedule/schedule.module';
 import { SearchModule } from './search/search.module';
 import { SharedModule } from './shared/shared.module';
 import { metaReducers, reducers } from './store/reducers/index';
+import { AuthGuard } from './auth/auth-guard.service';
 
 @NgModule({
   declarations: [LandingPageComponent],
@@ -65,7 +66,7 @@ import { metaReducers, reducers } from './store/reducers/index';
     PaymentModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
