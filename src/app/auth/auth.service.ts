@@ -37,16 +37,12 @@ export class AuthService {
 
   async createUserProfile(formData: SignUp) {
     // HTTP PUT.
-    try {
-      const userPutlUrl = `${URL.backendApi}/user`;
-      delete formData['password'];
+    const userPutlUrl = `${URL.backendApi}/user`;
+    delete formData['password'];
 
-      this.httpClient
-        .put<SignUp>(userPutlUrl, JSON.stringify(formData))
-        .pipe(catchError(ErrorHandler.handleHttpError))
-        .subscribe();
-    } catch (error) {
-      debugger;
-    }
+    this.httpClient
+      .put<SignUp>(userPutlUrl, JSON.stringify(formData))
+      .pipe(catchError(ErrorHandler.handleHttpError))
+      .subscribe();
   }
 }
