@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import * as fromAuthModel from '../../model/auth.model';
 import { SignupComponent } from '../pure/signup.component';
 import { AuthFacade } from './../../auth.facade';
+import { skip, takeUntil, filter } from 'rxjs/operators';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-signup-container',
   templateUrl: './signup-container.component.html',
   styleUrls: ['./signup-container.component.scss']
 })
-export class SignupContainerComponent implements OnInit {
+export class SignupContainerComponent implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject<void>();
   constructor(public dialog: MatDialog, private authFacade: AuthFacade, private router: Router) {}
 
   openSignupDialog(): void {
@@ -24,13 +27,34 @@ export class SignupContainerComponent implements OnInit {
       this.animal = result;*/
     });
 
-    dialogRef.componentInstance.signUp.subscribe(this.signUp.bind(this));
-    dialogRef.componentInstance.signUpWithOAuth.subscribe(this.signUpWithOAuth.bind(this));
-    this.authFacade.signUp$.subscribe(response => this.router.navigate['/dashboard']);
-    this.authFacade.error$.subscribe(error => (dialogRef.componentInstance.error = error));
+    dialogRef.componentInstance.signUp.pipe(takeUntil(this.unsubscribe$)).subscribe(this.signUp.bind(this));
+    dialogRef.componentInstance.signUpWithOAuth
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(this.signUpWithOAuth.bind(this));
+
+    this.authFacade.signUp$
+      .pipe(
+        skip(1),
+        takeUntil(this.unsubscribe$),
+        filter(response => !!response.uid)
+      )
+      .subscribe(_ => {
+        dialogRef.close();
+        this.router.navigate(['/dashboard']);
+      });
+    this.authFacade.error$
+      .pipe(
+        skip(1),
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe(error => (dialogRef.componentInstance.error = error));
   }
 
   ngOnInit() {}
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
   signUpWithOAuth(route: fromAuthModel.SignupRoute) {
     this.authFacade.loginWithOAuth(route);
   }

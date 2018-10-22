@@ -80,7 +80,7 @@ export class AuthEffects {
       return new fromAuthActions.SignUpFailed();
     }
 
-    return new fromAuthActions.SignInSuccess(data);
+    return new fromAuthActions.SignUpSuccess(data);
   }
 
   private handleSignUpFailure(): Action {
