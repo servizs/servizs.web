@@ -62,7 +62,8 @@ import { metaReducers, reducers } from './store/reducers/index';
     AngularFireAuthModule,
     AppRoutingModule,
 
-    PaymentModule
+    PaymentModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
