@@ -87,15 +87,24 @@ export class AuthEffects {
     return new fromAuthActions.SignUpFailed();
   }
 
-  private handleAuthSuccess(authResponse: any, formData: SignIn): Action {
-    const data = { ...formData, uid: authResponse.user.uid };
+  private handleAuthSuccess(authResponse: any, formData: SignIn | SignUp): Action {
     try {
-      // this.authService.createUserProfile(data);
+      if (authResponse && authResponse.additionalUserInfo && authResponse.additionalUserInfo.profile) {
+        const { email, family_name, given_name, picture, id } = authResponse.additionalUserInfo.profile;
+        formData = <any>{
+          firstName: given_name,
+          lastName: family_name,
+          emailAddress: email,
+          uid: authResponse.user.uid
+        };
+      }
+
+      this.authService.login(formData);
     } catch (error) {
       return new fromAuthActions.SignInFailed();
     }
 
-    return new fromAuthActions.SignInSuccess(data);
+    return new fromAuthActions.SignInSuccess(formData);
   }
 
   private handleAuthFailure(error: any): Action {

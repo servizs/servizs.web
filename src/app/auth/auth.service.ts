@@ -45,4 +45,15 @@ export class AuthService {
       .pipe(catchError(ErrorHandler.handleHttpError))
       .subscribe();
   }
+
+  async login(formData: SignIn) {
+    // HTTP PUT.
+    const userPutlUrl = `${URL.backendApi}/user`;
+    delete formData['password'];
+
+    this.httpClient
+      .post<SignIn>(userPutlUrl, JSON.stringify(formData))
+      .pipe(catchError(ErrorHandler.handleHttpError))
+      .subscribe();
+  }
 }
