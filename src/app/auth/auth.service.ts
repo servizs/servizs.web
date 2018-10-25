@@ -48,7 +48,7 @@ export class AuthService {
 
   async login(formData: SignIn) {
     // HTTP PUT.
-    const userPutlUrl = `${URL.backendApi}/user`;
+    const userPutlUrl = `${URL.backendApi}/user/postOauth`;
     delete formData['password'];
 
     this.httpClient
