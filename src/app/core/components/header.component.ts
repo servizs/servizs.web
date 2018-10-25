@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
     </button>
     <app-login-container [hidden]="isAuthenticated$ | async"></app-login-container>
     <app-signup-container [hidden]="isAuthenticated$ | async"></app-signup-container>
+    <app-sign-out-container [hidden]="!(isAuthenticated$ | async)"></app-sign-out-container>
     <ng-content></ng-content>
   </mat-toolbar>`,
   styleUrls: ['./header.component.scss']
