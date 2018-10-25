@@ -16,6 +16,6 @@ export class ProfileComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.stripeUrl = URL.stripeConnectUrl.replace('CLIENT_ID', environment.stripe.platformId);
+    this.stripeUrl = URL.stripeConnectUrl.replace('CLIENT_ID', environment.stripe.platformClient_id);
   }
 }

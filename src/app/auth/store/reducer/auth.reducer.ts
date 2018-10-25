@@ -6,12 +6,14 @@ export interface State {
   signIn: SignIn;
   signUp: SignUp;
   error: string;
+  isAuthenticated: boolean;
 }
 
 const initialState: State = {
   signIn: <any>{},
   signUp: <any>{},
-  error: ''
+  error: '',
+  isAuthenticated: false
 };
 
 export function reducer(state = initialState, action: fromAuthActions.AuthActions): State {
@@ -30,7 +32,8 @@ export function reducer(state = initialState, action: fromAuthActions.AuthAction
         ...state,
         error: null,
         signIn: action.signIn,
-        signUp: <any>{}
+        signUp: <any>{},
+        isAuthenticated: true
       };
     }
 
@@ -39,7 +42,8 @@ export function reducer(state = initialState, action: fromAuthActions.AuthAction
         ...state,
         error: 'Sign in failed',
         signUp: <any>{},
-        signIn: <any>{}
+        signIn: <any>{},
+        isAuthenticated: false
       };
     }
 
@@ -56,7 +60,8 @@ export function reducer(state = initialState, action: fromAuthActions.AuthAction
       return {
         ...state,
         signUp: action.signUp,
-        error: null
+        error: null,
+        isAuthenticated: true
       };
     }
 
@@ -65,7 +70,8 @@ export function reducer(state = initialState, action: fromAuthActions.AuthAction
         ...state,
         error: 'Sign up failed',
         signUp: <any>{},
-        signIn: <any>{}
+        signIn: <any>{},
+        isAuthenticated: false
       };
     }
 

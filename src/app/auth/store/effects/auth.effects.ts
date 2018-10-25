@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { asyncScheduler, Observable } from 'rxjs';
 import { skip, switchMap } from 'rxjs/operators';
-import { SignupRoute } from '../../model/auth.model';
+import { SignupRoute, SignUp } from '../../model/auth.model';
 import * as fromAuthActions from '../actions/auth.actions';
 import { AuthService } from './../../auth.service';
 import { SignIn } from './../../model/auth.model';
@@ -21,35 +21,12 @@ export class AuthEffects {
           skip(1)
         );
 
-        //if (action.signupRoute === SignupRoute.None) {
         return this.authService
           .signupUser(action.signUp)
           .then(
             (authResponse: any) => this.handleSignUpSuccess(authResponse, action.signUp),
             (error: any) => this.handleSignUpFailure()
           );
-        /*} else if (action.signupRoute === SignupRoute.Google) {
-          return this.authService
-            .loginWithGoogle()
-            .then(
-              (authResponse: any) => this.handleAuthSuccess(authResponse, action.signUp),
-              (error: any) => this.handleAuthFailure(error)
-            );
-        } else if (action.signupRoute === SignupRoute.Facebook) {
-          return this.authService
-            .loginWithFb()
-            .then(
-              (authResponse: any) => this.handleAuthSuccess(authResponse, action.signUp),
-              (error: any) => this.handleAuthFailure(error)
-            );
-        } else if (action.signupRoute === SignupRoute.Twitter) {
-          return this.authService
-            .loginWithTwitter()
-            .then(
-              (authResponse: any) => this.handleAuthSuccess(authResponse, action.signUp),
-              (error: any) => this.handleAuthFailure(error)
-            );
-        }*/
       })
     );
 
@@ -95,30 +72,39 @@ export class AuthEffects {
       })
     );
 
-  private handleSignUpSuccess(authResponse: any, formData: SignIn): Action {
+  private handleSignUpSuccess(authResponse: any, formData: SignUp): Action {
     const data = { ...formData, uid: authResponse.user.uid };
     try {
-      // this.authService.createUserProfile(data);
+      this.authService.createUserProfile(data);
     } catch (error) {
       return new fromAuthActions.SignUpFailed();
     }
 
-    return new fromAuthActions.SignInSuccess(data);
+    return new fromAuthActions.SignUpSuccess(data);
   }
 
   private handleSignUpFailure(): Action {
     return new fromAuthActions.SignUpFailed();
   }
 
-  private handleAuthSuccess(authResponse: any, formData: SignIn): Action {
-    const data = { ...formData, uid: authResponse.user.uid };
+  private handleAuthSuccess(authResponse: any, formData: SignIn | SignUp): Action {
     try {
-      // this.authService.createUserProfile(data);
+      if (authResponse && authResponse.additionalUserInfo && authResponse.additionalUserInfo.profile) {
+        const { email, family_name, given_name, picture, id } = authResponse.additionalUserInfo.profile;
+        formData = <any>{
+          firstName: given_name,
+          lastName: family_name,
+          emailAddress: email,
+          uid: authResponse.user.uid
+        };
+      }
+
+      this.authService.login(formData);
     } catch (error) {
       return new fromAuthActions.SignInFailed();
     }
 
-    return new fromAuthActions.SignInSuccess(data);
+    return new fromAuthActions.SignInSuccess(formData);
   }
 
   private handleAuthFailure(error: any): Action {

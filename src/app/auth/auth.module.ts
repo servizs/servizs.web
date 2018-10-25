@@ -14,6 +14,7 @@ import { LoginContainerComponent } from './components/smart/login-container.comp
 import { SignupContainerComponent } from './components/smart/signup-container.component';
 import { AuthEffects } from './store/effects/auth.effects';
 import { reducers } from './store/reducer/index';
+import { SignOutContainerComponent } from './components/smart/sign-out-container.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -25,8 +26,14 @@ import { reducers } from './store/reducer/index';
     ReactiveFormsModule
   ],
   providers: [AuthFacade, AuthService],
-  declarations: [LoginContainerComponent, SignupContainerComponent, SignupComponent, LoginComponent],
-  exports: [SignupContainerComponent, LoginContainerComponent],
-  entryComponents: [SignupComponent, LoginComponent]
+  declarations: [
+    LoginContainerComponent,
+    SignupContainerComponent,
+    SignupComponent,
+    LoginComponent,
+    SignOutContainerComponent
+  ],
+  exports: [SignupContainerComponent, LoginContainerComponent, SignOutContainerComponent],
+  entryComponents: [SignupComponent, LoginComponent, SignOutContainerComponent]
 })
 export class AuthModule {}

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthFacade } from '../../auth.facade';
 import * as fromAuthModel from '../../model/auth.model';
 import { LoginComponent } from './../pure/login.component';
+import { skip, takeUntil, filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-login-container',
@@ -11,6 +13,7 @@ import { LoginComponent } from './../pure/login.component';
   styleUrls: ['./login-container.component.scss']
 })
 export class LoginContainerComponent implements OnInit {
+  private unsubscribe$ = new Subject<void>();
   constructor(public dialog: MatDialog, private authFacade: AuthFacade, private router: Router) {}
 
   openSignupDialog(): void {
@@ -27,8 +30,22 @@ export class LoginContainerComponent implements OnInit {
     dialogRef.componentInstance.login$.subscribe(this.login.bind(this));
     dialogRef.componentInstance.loginWithOAuth$.subscribe(this.loginWithOAuth.bind(this));
 
-    this.authFacade.signUp$.subscribe(response => this.router.navigate['/dashboard']);
-    this.authFacade.error$.subscribe(error => (dialogRef.componentInstance.error = error));
+    this.authFacade.loginStatus$
+      .pipe(
+        skip(1),
+        takeUntil(this.unsubscribe$),
+        filter(response => !!response)
+      )
+      .subscribe(_ => {
+        dialogRef.close();
+        this.router.navigate(['/dashboard']);
+      });
+    this.authFacade.error$
+      .pipe(
+        skip(1),
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe(error => (dialogRef.componentInstance.error = error));
   }
 
   ngOnInit() {}
@@ -38,5 +55,10 @@ export class LoginContainerComponent implements OnInit {
 
   login(formData: fromAuthModel.SignUp) {
     this.authFacade.login(formData);
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

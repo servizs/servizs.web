@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   stripe: {
-    platformId: 'ca_DjB1FwivH8jv5pZZLOOpUdMevElVeLoo',
+    platformClient_id: 'ca_DjB1ew7JcIXKd6Ya05uPjsOIQ6UUkl5L',
     apiPublishableKey: 'pk_test_Wz3FgFCq7EBlbfI16Fg8dOtU'
   },
   firebaseConfig: {
