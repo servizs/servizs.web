@@ -30,7 +30,7 @@ export class LoginContainerComponent implements OnInit {
     dialogRef.componentInstance.login$.subscribe(this.login.bind(this));
     dialogRef.componentInstance.loginWithOAuth$.subscribe(this.loginWithOAuth.bind(this));
 
-    this.authFacade.signIn$
+    this.authFacade.loginStatus$
       .pipe(
         skip(1),
         takeUntil(this.unsubscribe$),

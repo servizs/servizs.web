@@ -14,6 +14,7 @@ import { Subject } from 'rxjs';
 })
 export class SignupContainerComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
+
   constructor(public dialog: MatDialog, private authFacade: AuthFacade, private router: Router) {}
 
   openSignupDialog(): void {
@@ -28,11 +29,11 @@ export class SignupContainerComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(this.signUpWithOAuth.bind(this));
 
-    this.authFacade.signUp$
+    this.authFacade.loginStatus$
       .pipe(
         skip(1),
         takeUntil(this.unsubscribe$),
-        filter(response => !!response.uid)
+        filter(response => response)
       )
       .subscribe(_ => {
         dialogRef.close();

@@ -8,12 +8,11 @@ import * as fromAuth from './store/reducer/index';
 
 @Injectable()
 export class AuthFacade {
-  signUp$: Observable<fromAuthModel.SignUp>;
-  signIn$: Observable<fromAuthModel.SignIn>;
-  error$: Observable<string>;
+  loginStatus$: Observable<boolean>;
+  error$: Observable<any>;
+
   constructor(private store: Store<fromAuth.State>) {
-    this.signUp$ = this.store.pipe(select(fromAuth.getSignUpStatus));
-    this.signIn$ = this.store.pipe(select(fromAuth.getSignInStatus));
+    this.loginStatus$ = this.store.pipe(select(fromAuth.getAuthStatus));
     this.error$ = this.store.pipe(select(fromAuth.getAuthErrorStatus));
   }
 
